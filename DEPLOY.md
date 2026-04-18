@@ -1,14 +1,14 @@
 # Deploy guide — OpenInterpretability
 
-End-to-end steps to go from `git push` to `openinterpretability.org` in production.
+End-to-end steps to go from `git push` to `openinterp.org` in production.
 
 ## Phase 0 — prerequisites (one-time)
 
 1. **Register domains** (~$40/year total)
    ```bash
    # Via Vercel, Cloudflare Registrar, or Namecheap
-   # openinterpretability.org   (~$12/yr)
-   # openinterpretability.ai    (~$25/yr, optional)
+   # openinterp.org   (~$12/yr)
+   # openinterp.ai    (~$25/yr, optional)
    ```
 
 2. **Install Vercel CLI**
@@ -43,8 +43,8 @@ vercel --prod              # deploys to *.vercel.app URL
 
 ```bash
 # In Vercel dashboard, or via CLI
-vercel domains add openinterpretability.org
-vercel domains add www.openinterpretability.org
+vercel domains add openinterp.org
+vercel domains add www.openinterp.org
 ```
 
 Then in your registrar (Vercel, Cloudflare, etc.) set DNS:
