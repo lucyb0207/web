@@ -7,50 +7,51 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid dark:bg-grid-dark opacity-40" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-brand-600/20 bg-brand-600/5 px-3 py-1 text-xs font-medium text-brand-700 dark:text-brand-300">
+        <div className="absolute inset-0 bg-grid dark:bg-grid-dark opacity-30" aria-hidden="true" />
+        {/* Radial glow */}
+        <div
+          className="absolute left-1/2 top-20 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-5xl px-6 pt-20 pb-24 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1.5 text-xs font-medium text-brand-700 dark:text-brand-300 backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
             {headline.eyebrow}
           </div>
-          <h1 className="mt-6 text-4xl sm:text-6xl font-semibold tracking-tight text-balance">
-            {headline.h1.split('operational').map((part, i) =>
-              i === 0 ? (
-                <span key={i}>{part}</span>
-              ) : (
-                <span key={i}>
-                  <span className="gradient-text">operational</span>
-                  {part}
-                </span>
-              )
-            )}
+
+          <h1 className="mt-8 text-5xl sm:text-7xl lg:text-[5.5rem] font-semibold leading-[1.05] tracking-tight text-ink-900 dark:text-white text-balance">
+            Mechanistic interpretability,{' '}
+            <span className="gradient-text font-semibold">operational.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-ink-900/70 dark:text-ink-50/70 text-balance leading-relaxed">
+
+          <p className="mx-auto mt-7 max-w-2xl text-lg sm:text-xl text-ink-900/70 dark:text-ink-50/70 text-balance leading-relaxed">
             {headline.sub}
           </p>
+
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/playground"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm shadow-brand-600/25 hover:bg-brand-700 transition-colors"
+              className="group inline-flex items-center gap-2 rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-600/40 transition-all"
             >
-              Try the playground <ArrowRight className="h-4 w-4" />
+              Try the playground
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               href={site.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/15 px-5 py-2.5 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg border border-black/15 dark:border-white/20 bg-white/50 dark:bg-white/5 px-6 py-3 text-sm font-semibold backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/10 transition-colors"
             >
               <Github className="h-4 w-4" /> Star on GitHub
             </Link>
           </div>
 
           {/* Install pill */}
-          <div className="mt-10 mx-auto max-w-md">
-            <div className="mono text-sm card px-4 py-3 flex items-center justify-between">
-              <span className="text-ink-900/60 dark:text-ink-50/60">$</span>
-              <code className="flex-1 text-center">pip install mechreward</code>
-              <span className="chip bg-brand-600/10 text-brand-700 dark:text-brand-300 ring-brand-600/20">
+          <div className="mt-12 mx-auto max-w-md">
+            <div className="font-mono text-sm card px-5 py-3.5 flex items-center gap-3 shadow-md">
+              <span className="text-brand-500 select-none">$</span>
+              <code className="flex-1 text-left text-ink-900 dark:text-ink-50">pip install mechreward</code>
+              <span className="chip bg-brand-500/15 text-brand-700 dark:text-brand-300 ring-brand-500/30">
                 alpha
               </span>
             </div>

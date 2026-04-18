@@ -1,8 +1,23 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { site } from '@/lib/constants'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+  weight: ['400', '500', '600'],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -39,8 +54,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen antialiased text-ink-900 dark:text-ink-50 bg-ink-50 dark:bg-ink-950">
+    <html lang="en" className={`${inter.variable} ${mono.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen font-sans antialiased text-ink-900 dark:text-ink-50 bg-ink-50 dark:bg-ink-950">
         <Navbar />
         <main className="relative">{children}</main>
         <Footer />
