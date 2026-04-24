@@ -1,11 +1,12 @@
 import {
   Rocket, Zap, Crown, LucideIcon,
   Search, Share2, Sliders, Compass, Flame, Feather, Beaker, GraduationCap, Scale, Shield,
+  Network, GitBranch, Layers, Workflow,
 } from 'lucide-react'
 
 export type NotebookTier = 'hobbyist' | 'explorer' | 'papergrade'
 export type NotebookSupplKind =
-  | 'discover' | 'share' | 'steer' | 'pick' | 'coverage' | 'research' | 'safety'
+  | 'discover' | 'share' | 'steer' | 'pick' | 'coverage' | 'research' | 'safety' | 'circuits'
 
 const NOTEBOOK_REPO = 'OpenInterpretability/notebooks'
 const GITHUB_BASE = `https://github.com/${NOTEBOOK_REPO}/blob/main/notebooks`
@@ -307,6 +308,63 @@ export const supplementary: SupplNotebook[] = [
     githubUrl: `${GITHUB_BASE}/12_batchtopk_vs_topk.ipynb`,
     colabUrl: colabFor('12_batchtopk_vs_topk.ipynb'),
   },
+  // Circuits
+  {
+    kind: 'circuits',
+    title: 'Attribution Patching (AtP*)',
+    tagline: 'Kramár 2024 — QK-fix + GradDrop · node attribution',
+    icon: Network,
+    description:
+      'Compute per-feature attribution scores on your SAE using AtP* (the 2-forward-1-backward linearization). Mean-ablation baseline, QK-fix for attention heads, GradDrop for sign-cancellation robustness. Emits circuit JSON for the Canvas viewer.',
+    estimatedTime: '~15 min · Colab T4',
+    platform: 'Colab Free',
+    difficulty: 'intermediate',
+    notebookPath: '14_attribution_patching.ipynb',
+    githubUrl: `${GITHUB_BASE}/14_attribution_patching.ipynb`,
+    colabUrl: colabFor('14_attribution_patching.ipynb'),
+  },
+  {
+    kind: 'circuits',
+    title: 'Sparse Feature Circuits (Marks 2024)',
+    tagline: 'arxiv:2403.19647 replication · node + edge DAG',
+    icon: GitBranch,
+    description:
+      'Full replication of Marks et al. 2024. Node attribution via AtP + IG-10 fallback for early layers. Edge attribution via Appendix A.1 (upstream decoder × downstream encoder × upstream delta × downstream gradient). SAE error terms as triangle nodes.',
+    estimatedTime: '~20 min · A100',
+    platform: 'Colab Pro A100',
+    difficulty: 'advanced',
+    notebookPath: '15_sparse_feature_circuits.ipynb',
+    githubUrl: `${GITHUB_BASE}/15_sparse_feature_circuits.ipynb`,
+    colabUrl: colabFor('15_sparse_feature_circuits.ipynb'),
+  },
+  {
+    kind: 'circuits',
+    title: 'ACDC slow-mode via AutoCircuit',
+    tagline: 'NeurIPS 2023 algorithm · independent verification',
+    icon: Workflow,
+    description:
+      'Run the original ACDC algorithm (Conmy 2023) using AutoCircuit (UFO-101 — the practitioner-default fork). Slower than AtP but peer-reviewed. Compare faithfulness curves across methods. Emits circuit.json compatible with the Canvas viewer.',
+    estimatedTime: '1–2 h · Colab T4',
+    platform: 'Colab · any tier',
+    difficulty: 'advanced',
+    notebookPath: '16_autocircuit_acdc.ipynb',
+    githubUrl: `${GITHUB_BASE}/16_autocircuit_acdc.ipynb`,
+    colabUrl: colabFor('16_autocircuit_acdc.ipynb'),
+  },
+  {
+    kind: 'circuits',
+    title: 'Train a Sparse Crosscoder',
+    tagline: 'Lindsey 2024 · shared dictionary across 3+ layers',
+    icon: Layers,
+    description:
+      'Train a single crosscoder that reads and writes across multiple residual layers simultaneously. Unifies L11/L31/L55-style multi-layer SAEs into one feature index. Greenfield — not yet in SAELens. Classifies features as persistent / early-only / late-only / mixed.',
+    estimatedTime: '~30 min · T4 (20M tok) · scales to paper-grade',
+    platform: 'Colab Free · T4',
+    difficulty: 'advanced',
+    notebookPath: '17_train_crosscoder.ipynb',
+    githubUrl: `${GITHUB_BASE}/17_train_crosscoder.ipynb`,
+    colabUrl: colabFor('17_train_crosscoder.ipynb'),
+  },
   // Safety
   {
     kind: 'safety',
@@ -348,6 +406,11 @@ export const supplementaryGroups: {
     label: 'Research-grade',
     sub: 'Replicate published results. Write your paper.',
     kinds: ['research'],
+  },
+  {
+    label: 'Circuits',
+    sub: 'Attribution graphs between SAE features. View with /observatory/circuits.',
+    kinds: ['circuits'],
   },
   {
     label: 'Safety + production',
