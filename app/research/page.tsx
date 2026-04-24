@@ -5,15 +5,6 @@ export const metadata = { title: 'Research' }
 
 const artifacts = [
   {
-    title: 'Per-token SAE features as online RL reward: breaking the G2 76% ceiling on GSM8K',
-    venue: 'LessWrong (2026-04-17)',
-    status: 'Under moderator review',
-    url:
-      'https://www.lesswrong.com/posts/H7mnTT7aPPijpjLAS/per-token-sae-features-as-online-rl-reward-breaking-the-g2',
-    summary:
-      'Full writeup of Stage Gate 1 → 2 → 3 on Qwen3.5-4B. GSM8K 64% → 83% in 168 effective training steps. MMLU preserved. Adversarial canary hack rate within 95% CI.',
-  },
-  {
     title: 'Qwen3.6-35B-A3B SAE at L23 — Stage Gate 1 passed (ρ=0.522)',
     venue: 'GitHub release · mechreward catalog',
     status: 'Published artifact',
