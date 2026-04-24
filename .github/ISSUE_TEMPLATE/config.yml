@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/OpenInterpretability/web/discussions
+    about: For design questions, ideas, or Q&A that's not quite an issue yet.
+  - name: 🌐 openinterp.org
+    url: https://openinterp.org
+    about: The live site — try Trace Theater, browse the leaderboard, read the manifesto.
+  - name: 📘 Manifesto
+    url: https://openinterp.org/manifesto
+    about: Why this project exists.
