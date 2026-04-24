@@ -15,6 +15,7 @@ const primaryNav = [
 
 const secondaryNav = [
   { href: '/interpscore', label: 'Leaderboard' },
+  { href: '/contribute', label: 'Contribute' },
   { href: '/manifesto', label: 'Manifesto' },
   { href: '/roadmap', label: 'Roadmap' },
   { href: '/research', label: 'Research' },
