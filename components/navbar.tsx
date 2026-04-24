@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { site } from '@/lib/constants'
 import { Github, Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 const primaryNav = [
   { href: '/train', label: 'Train' },
@@ -61,6 +62,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Link
             href={site.github}
             target="_blank"

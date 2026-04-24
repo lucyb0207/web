@@ -70,9 +70,29 @@ export const viewport: Viewport = {
   maximumScale: 5,
 }
 
+/**
+ * Inline script runs BEFORE React hydration to apply the theme class
+ * synchronously — prevents flash-of-wrong-theme (FOUC) on reload.
+ * 1. Read localStorage.theme if user picked one
+ * 2. Otherwise honor `prefers-color-scheme`
+ * 3. Set `class="dark"` on <html> if dark
+ */
+const themeInitScript = `
+(function(){
+  try {
+    var stored = localStorage.getItem('theme');
+    var dark = stored === 'dark' || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (dark) document.documentElement.classList.add('dark');
+  } catch (e) {}
+})();
+`.trim()
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-screen font-sans antialiased text-ink-900 dark:text-ink-50 bg-ink-50 dark:bg-ink-950">
         <Navbar />
         <main className="relative">{children}</main>
