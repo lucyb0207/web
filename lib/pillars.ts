@@ -261,10 +261,10 @@ export const roadmap = [
 ]
 
 export const heroNew = {
-  eyebrow: 'Research-grade interpretability · shipped MIT · +19pp GSM8K via mechreward',
+  eyebrow: 'Observatory · Laboratory · Watchtower · Academy — shipped MIT',
   watchLine: 'Watch language models',
   thinkLine: 'think.',
   subBold: 'Trace every feature. Every circuit. Every second of reasoning.',
   subText:
-    'The operational layer for mechanistic interpretability — trained SAEs on hybrid architectures, per-token reward signals, and the first open platform that anyone — researcher, student, safety team — can actually use on their phone, in their papers, in their deployments.',
+    'The open platform for mechanistic interpretability. Train SAEs on free Colab in 30 min or at paper-grade in the cloud. Trace any model. Edit features, monitor deployments, teach the next generation — one platform, four ways in.',
 }

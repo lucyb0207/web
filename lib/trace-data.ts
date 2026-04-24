@@ -21,7 +21,7 @@ export interface TraceData {
 export interface TraceScenario {
   id: string
   label: string
-  category: 'math' | 'code' | 'riddle' | 'safety' | 'medical'
+  category: 'math' | 'code' | 'riddle' | 'safety' | 'medical' | 'planning' | 'creative' | 'multilingual' | 'ambiguity' | 'tom'
   prompt: string
   model: string
   layer: string

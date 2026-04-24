@@ -59,22 +59,22 @@ export default function HomePage() {
           <div className="mt-12 mx-auto max-w-md">
             <div className="font-mono text-sm card px-5 py-3.5 flex items-center gap-3 shadow-md">
               <span className="text-brand-500 select-none">$</span>
-              <code className="flex-1 text-left text-ink-900 dark:text-ink-50">pip install mechreward</code>
+              <code className="flex-1 text-left text-ink-900 dark:text-ink-50">pip install openinterp-cli</code>
               <span className="chip bg-brand-500/15 text-brand-700 dark:text-brand-300 ring-brand-500/30">
-                alpha
+                v0.0.1
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== Headline metrics (preserved) ===== */}
+      {/* ===== Platform-state metrics ===== */}
       <section className="mx-auto max-w-7xl px-6 -mt-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Metric label="GSM8K lift (Qwen3.5-4B)" value="+19 pp" detail="64% → 83% in 168 effective steps" />
-          <Metric label="G1 correlation (Qwen3.6-35B)" value="ρ = 0.52" detail="n=100 held-out SuperGPQA, p<1e-7" />
-          <Metric label="Sparse vs raw ablation" value="+11 pp" detail="R1 (SAE-sparse) − R2 (raw direction)" />
-          <Metric label="Public SAEs on hybrid arch" value="3" detail="GDN · ensemble-MoE · triple-hybrid" />
+          <Metric label="Pillars shipped" value="4" detail="Observatory · Laboratory · Watchtower · Academy" />
+          <Metric label="Training ladder" value="3 tiers" detail="Colab Free → Kaggle → Cloud paper-grade" />
+          <Metric label="Trace scenarios live" value="10" detail="Medical · math · code · riddle · safety · planning · creative · multilingual · ambiguity · ToM" />
+          <Metric label="First-in-class SAEs" value="4+" detail="Qwen3.5 GDN · Gemma-4 MoE · Qwen3.6 dense · Qwen3.6 triple-hybrid" />
         </div>
       </section>
 

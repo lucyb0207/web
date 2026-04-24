@@ -1,7 +1,11 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { Play, Pause, RotateCcw, Stethoscope, Sigma, Code2, HelpCircle, ShieldAlert } from 'lucide-react'
+import {
+  Play, Pause, RotateCcw,
+  Stethoscope, Sigma, Code2, HelpCircle, ShieldAlert,
+  Map, Feather, Languages, MessageCircleQuestion, HeartHandshake,
+} from 'lucide-react'
 import { defaultScenario, type TraceScenario } from '@/lib/trace-data'
 import { extraScenarios } from '@/lib/trace-scenarios'
 
@@ -15,6 +19,11 @@ const categoryIcon = {
   code: Code2,
   riddle: HelpCircle,
   safety: ShieldAlert,
+  planning: Map,
+  creative: Feather,
+  multilingual: Languages,
+  ambiguity: MessageCircleQuestion,
+  tom: HeartHandshake,
 } as const
 
 export function TraceTheater() {
@@ -85,29 +94,45 @@ export function TraceTheater() {
 
   return (
     <div className="card overflow-hidden">
-      {/* Scenario picker */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-black/5 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] px-5 py-3">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-900/50 dark:text-ink-50/50 mr-2">
-          Scenario
-        </span>
-        {ALL_SCENARIOS.map((s) => {
-          const Icon = categoryIcon[s.category]
-          const active = s.id === scenarioId
-          return (
-            <button
-              key={s.id}
-              onClick={() => setScenarioId(s.id)}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                active
-                  ? 'bg-brand-600 text-white shadow-sm'
-                  : 'border border-black/10 dark:border-white/15 hover:bg-black/5 dark:hover:bg-white/5 text-ink-900/70 dark:text-ink-50/70'
-              }`}
-            >
-              <Icon className="h-3.5 w-3.5" />
-              {s.label}
-            </button>
-          )
-        })}
+      {/* Scenario picker — grouped by bucket */}
+      <div className="border-b border-black/5 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] px-5 py-3 space-y-2">
+        {(() => {
+          const groups: { label: string; categories: TraceScenario['category'][] }[] = [
+            { label: 'Analytical', categories: ['medical', 'math', 'code', 'planning'] },
+            { label: 'Creative', categories: ['creative', 'multilingual'] },
+            { label: 'Social', categories: ['riddle', 'ambiguity', 'tom'] },
+            { label: 'Safety', categories: ['safety'] },
+          ]
+          return groups.map((g) => {
+            const items = ALL_SCENARIOS.filter((s) => g.categories.includes(s.category))
+            if (items.length === 0) return null
+            return (
+              <div key={g.label} className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-900/40 dark:text-ink-50/40 w-20 shrink-0">
+                  {g.label}
+                </span>
+                {items.map((s) => {
+                  const Icon = categoryIcon[s.category]
+                  const active = s.id === scenarioId
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => setScenarioId(s.id)}
+                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                        active
+                          ? 'bg-brand-600 text-white shadow-sm'
+                          : 'border border-black/10 dark:border-white/15 hover:bg-black/5 dark:hover:bg-white/5 text-ink-900/70 dark:text-ink-50/70'
+                      }`}
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                      {s.label}
+                    </button>
+                  )
+                })}
+              </div>
+            )
+          })
+        })()}
       </div>
 
       {/* Toolbar */}
