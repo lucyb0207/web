@@ -2,11 +2,13 @@ import {
   Rocket, Zap, Crown, LucideIcon,
   Search, Share2, Sliders, Compass, Flame, Feather, Beaker, GraduationCap, Scale, Shield,
   Network, GitBranch, Layers, Workflow,
+  Award, Telescope, Eye, Ruler, ScanSearch, Wand2,
 } from 'lucide-react'
 
 export type NotebookTier = 'hobbyist' | 'explorer' | 'papergrade'
 export type NotebookSupplKind =
   | 'discover' | 'share' | 'steer' | 'pick' | 'coverage' | 'research' | 'safety' | 'circuits'
+  | 'score' | 'lens' | 'probing'
 
 const NOTEBOOK_REPO = 'OpenInterpretability/notebooks'
 const GITHUB_BASE = `https://github.com/${NOTEBOOK_REPO}/blob/main/notebooks`
@@ -365,6 +367,93 @@ export const supplementary: SupplNotebook[] = [
     githubUrl: `${GITHUB_BASE}/17_train_crosscoder.ipynb`,
     colabUrl: colabFor('17_train_crosscoder.ipynb'),
   },
+  // InterpScore
+  {
+    kind: 'score',
+    title: 'InterpScore v0.0.1 — rank your SAE',
+    tagline: 'Composite metric · submit to the leaderboard',
+    icon: Award,
+    description:
+      'Compute the InterpScore of your SAE: loss_recovered + alive features + L0 sweet spot + sparse probing + TPP causal faithfulness. Emits interpscore.json, ready to PR into the public leaderboard at openinterp.org/interpscore.',
+    estimatedTime: '~20 min · Colab T4',
+    platform: 'Colab Free · Gemma-2-2B default',
+    difficulty: 'intermediate',
+    notebookPath: '18_interpscore_eval.ipynb',
+    githubUrl: `${GITHUB_BASE}/18_interpscore_eval.ipynb`,
+    colabUrl: colabFor('18_interpscore_eval.ipynb'),
+  },
+  // Lenses
+  {
+    kind: 'lens',
+    title: 'Logit Lens — per-layer predictions',
+    tagline: 'nostalgebraist 2020 · 5 lines of PyTorch',
+    icon: Eye,
+    description:
+      'Apply final_ln + unembed to every intermediate residual stream. See what the model is "thinking" at each depth. Pure transformers — no TransformerLens dep. Handles Llama/Gemma/Qwen/GPT-2/multimodal paths.',
+    estimatedTime: '~5 min · Colab T4',
+    platform: 'Colab Free',
+    difficulty: 'beginner',
+    notebookPath: '19_logit_lens.ipynb',
+    githubUrl: `${GITHUB_BASE}/19_logit_lens.ipynb`,
+    colabUrl: colabFor('19_logit_lens.ipynb'),
+  },
+  {
+    kind: 'lens',
+    title: 'Tuned Lens — calibrated predictions',
+    tagline: 'Belrose 2023 · pretrained or fresh-fit',
+    icon: Telescope,
+    description:
+      'Per-layer affine transformation that fixes Logit Lens under-specification. Tries pretrained checkpoints first (GPT-2, Pythia, Llama-3-8B, OPT, Vicuna); falls back to 200-step fresh training on the Pile (~20 min on T4).',
+    estimatedTime: '2 min (pretrained) · 20 min (fresh fit)',
+    platform: 'Colab Free',
+    difficulty: 'intermediate',
+    notebookPath: '20_tuned_lens.ipynb',
+    githubUrl: `${GITHUB_BASE}/20_tuned_lens.ipynb`,
+    colabUrl: colabFor('20_tuned_lens.ipynb'),
+  },
+  // Probing suite
+  {
+    kind: 'probing',
+    title: 'Linear Probe — the SAE baseline',
+    tagline: 'Alain & Bengio 2016 · the indispensable baseline',
+    icon: Ruler,
+    description:
+      'Fit sklearn LogisticRegression on residual-stream activations. Per-layer AUROC sweep. Diff-of-means baseline shipped (Farquhar 2023 critique). This is the number any SAE feature-pack must beat.',
+    estimatedTime: '~10 min · Colab T4',
+    platform: 'Colab Free',
+    difficulty: 'beginner',
+    notebookPath: '21_linear_probe.ipynb',
+    githubUrl: `${GITHUB_BASE}/21_linear_probe.ipynb`,
+    colabUrl: colabFor('21_linear_probe.ipynb'),
+  },
+  {
+    kind: 'probing',
+    title: 'CCS — Contrast Consistent Search',
+    tagline: 'Burns 2022 · unsupervised truth-probing, with honest baselines',
+    icon: ScanSearch,
+    description:
+      'Replicates Burns et al. 2022 CCS on IMDB or TruthfulQA. Ships diff-of-means + supervised LR ceiling alongside CCS per Farquhar 2023 critique. Best-of-10 restarts. Honest verdict when CCS adds no value over diff-of-means.',
+    estimatedTime: '~15 min · Colab T4',
+    platform: 'Colab Free',
+    difficulty: 'intermediate',
+    notebookPath: '22_ccs_probe.ipynb',
+    githubUrl: `${GITHUB_BASE}/22_ccs_probe.ipynb`,
+    colabUrl: colabFor('22_ccs_probe.ipynb'),
+  },
+  {
+    kind: 'probing',
+    title: 'RepE reading vector (LAT)',
+    tagline: 'Zou 2023 · extract + monitor + steer a concept',
+    icon: Wand2,
+    description:
+      'Linear Artificial Tomography. 32 contrastive prompt pairs → PCA → first component is the "honesty" / "sycophancy" / "refusal" / "confidence" direction. Monitor new prompts. Confirmed causal via ±α steering at the end.',
+    estimatedTime: '~10 min · Colab T4',
+    platform: 'Colab Free',
+    difficulty: 'intermediate',
+    notebookPath: '23_repe_reading_vector.ipynb',
+    githubUrl: `${GITHUB_BASE}/23_repe_reading_vector.ipynb`,
+    colabUrl: colabFor('23_repe_reading_vector.ipynb'),
+  },
   // Safety
   {
     kind: 'safety',
@@ -411,6 +500,21 @@ export const supplementaryGroups: {
     label: 'Circuits',
     sub: 'Attribution graphs between SAE features. View with /observatory/circuits.',
     kinds: ['circuits'],
+  },
+  {
+    label: 'Leaderboard',
+    sub: 'Rank your SAE on the public InterpScore leaderboard.',
+    kinds: ['score'],
+  },
+  {
+    label: 'Lenses',
+    sub: 'Classic tools — see what each layer is predicting.',
+    kinds: ['lens'],
+  },
+  {
+    label: 'Probing',
+    sub: 'The supervised baselines that SAE features must beat.',
+    kinds: ['probing'],
   },
   {
     label: 'Safety + production',
