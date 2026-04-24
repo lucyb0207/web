@@ -21,10 +21,19 @@ export default function ModelsPage() {
 
       <div className="mt-10 space-y-4">
         {saes.map((s) => (
-          <article key={s.model} className="card p-6">
+          <Link
+            key={s.model}
+            href={`https://huggingface.co/${s.repo}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group card p-6 block hover:border-brand-500/40 hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+          >
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <div>
-                <h3 className="font-semibold text-lg">{s.model}</h3>
+                <h3 className="font-semibold text-lg group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors inline-flex items-center gap-2">
+                  {s.model}
+                  <ExternalLink className="h-3.5 w-3.5 text-ink-900/30 dark:text-ink-50/30 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors" />
+                </h3>
                 <p className="text-sm text-ink-900/70 dark:text-ink-50/70">{s.architecture}</p>
               </div>
               <span
@@ -50,18 +59,11 @@ export default function ModelsPage() {
               <Cell label="Training tokens" value={s.tokens} />
               <Cell label="var_exp" value={s.varExp.toFixed(3)} accent />
               <Cell label="G1 Spearman ρ" value={s.g1Rho != null ? s.g1Rho.toFixed(3) : '—'} accent={s.g1Rho != null} />
-              <div className="flex items-end">
-                <Link
-                  href={`https://huggingface.co/${s.repo}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-brand-600 hover:text-brand-700"
-                >
-                  HuggingFace repo <ExternalLink className="h-3.5 w-3.5" />
-                </Link>
+              <div className="flex items-end text-xs font-mono text-brand-600 dark:text-brand-400 opacity-70 group-hover:opacity-100 transition-opacity">
+                huggingface.co/{s.repo}
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
 

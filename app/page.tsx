@@ -220,15 +220,22 @@ export default function HomePage() {
 
         <div className="grid gap-4">
           {saes.map((s) => (
-            <article key={s.model} className="card p-6 flex flex-col md:flex-row md:items-center gap-4">
+            <Link
+              key={s.model}
+              href={`https://huggingface.co/${s.repo}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group card p-6 flex flex-col md:flex-row md:items-center gap-4 hover:border-brand-500/40 hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+            >
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="font-semibold">{s.model}</h3>
+                  <h3 className="font-semibold group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{s.model}</h3>
                   <span className={`chip ring-inset ${
                     s.status === 'Released'
                       ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 ring-emerald-500/20'
                       : 'bg-amber-500/10 text-amber-700 dark:text-amber-300 ring-amber-500/20'
                   }`}>{s.status}</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-ink-900/30 dark:text-ink-50/30 group-hover:text-brand-600 dark:group-hover:text-brand-400 group-hover:translate-x-0.5 transition-all" />
                 </div>
                 <p className="mt-1 text-sm text-ink-900/70 dark:text-ink-50/70">
                   {s.architecture} · {s.layer} · {s.expansion} expansion · {s.tokens} training tokens
@@ -236,13 +243,16 @@ export default function HomePage() {
                 <p className="mt-2 text-xs text-ink-900/50 dark:text-ink-50/50 italic">
                   {s.firstPublic}
                 </p>
+                <p className="mt-1 font-mono text-[11px] text-brand-600 dark:text-brand-400 opacity-60 group-hover:opacity-100 transition-opacity">
+                  huggingface.co/{s.repo}
+                </p>
               </div>
               <div className="grid grid-cols-3 gap-3 md:grid-cols-3 text-sm text-center md:text-right">
                 <Stat label="var_exp" value={s.varExp.toFixed(3)} />
                 <Stat label="d_sae" value={s.dSae.toLocaleString()} />
                 <Stat label="G1 ρ" value={s.g1Rho != null ? s.g1Rho.toFixed(3) : '—'} />
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
