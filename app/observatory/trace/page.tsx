@@ -74,17 +74,18 @@ export default function TracePage() {
 
       <div className="mt-14 card p-8 bg-gradient-to-br from-brand-500/5 to-accent-500/5">
         <h2 className="text-2xl font-semibold tracking-tight text-balance">
-          Build your own trace on your own SAE.
+          Build your own trace on your own SAE — live.
         </h2>
         <p className="mt-3 text-base text-ink-900/70 dark:text-ink-50/70 max-w-2xl leading-relaxed">
-          The Python SDK will ship a one-liner: point it at any HuggingFace SAE + a prompt, get
-          back a shareable Trace URL. Q2 2026.
+          <code className="font-mono text-sm bg-black/5 dark:bg-white/5 px-1.5 py-0.5 rounded">pip install openinterp</code>{' '}
+          (v0.1.0, MIT) · point it at any HuggingFace SAE + a prompt, get back a{' '}
+          <code className="font-mono text-xs bg-black/5 dark:bg-white/5 px-1 py-0.5 rounded">Trace</code> JSON matching this viewer exactly. Shareable URL upload ships in v0.2.0 (Q2 2026).
         </p>
         <div className="mt-5 font-mono text-sm card px-5 py-3.5 inline-flex items-center gap-3 bg-black/[0.03] dark:bg-white/[0.03]">
           <span className="text-brand-500">$</span>
-          <code className="text-ink-900 dark:text-ink-50">pip install openinterp</code>
-          <span className="chip bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-amber-500/30 ring-inset">
-            coming Q2
+          <code className="text-ink-900 dark:text-ink-50">pip install &quot;openinterp[full]&quot;</code>
+          <span className="chip bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-emerald-500/30 ring-inset">
+            v0.1.0 live
           </span>
         </div>
       </div>

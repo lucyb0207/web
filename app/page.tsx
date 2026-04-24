@@ -59,9 +59,9 @@ export default function HomePage() {
           <div className="mt-12 mx-auto max-w-md">
             <div className="font-mono text-sm card px-5 py-3.5 flex items-center gap-3 shadow-md">
               <span className="text-brand-500 select-none">$</span>
-              <code className="flex-1 text-left text-ink-900 dark:text-ink-50">pip install openinterp-cli</code>
-              <span className="chip bg-brand-500/15 text-brand-700 dark:text-brand-300 ring-brand-500/30">
-                v0.0.1
+              <code className="flex-1 text-left text-ink-900 dark:text-ink-50">pip install openinterp</code>
+              <span className="chip bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-emerald-500/30">
+                v0.1.0 live
               </span>
             </div>
           </div>
