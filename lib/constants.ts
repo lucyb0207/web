@@ -54,6 +54,20 @@ export const moat = [
 
 export const saes = [
   {
+    model: 'Qwen/Qwen3.6-27B',
+    architecture: 'Dense reasoning-tuned · 3 layers in parallel (L11/L31/L55)',
+    layer: 'Residual post-L11 · L31 · L55',
+    dSae: 65536,
+    k: 128,
+    expansion: '13×',
+    tokens: '200M (70M done · 35%)',
+    varExp: 0.815,
+    g1Rho: null,
+    repo: 'caiovicentino1/qwen36-27b-sae-papergrade',
+    status: 'Training in progress',
+    firstPublic: 'Paper-grade 3-layer SAE on Qwen3.6-27B · Gemma-Scope-27B parity recipe · AuxK dead-feature mitigation',
+  },
+  {
     model: 'Qwen/Qwen3.5-4B',
     architecture: 'Hybrid Gated DeltaNet',
     layer: 'Residual post-L18',
